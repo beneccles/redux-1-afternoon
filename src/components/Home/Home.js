@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import RecipeCard from "./../RecipeCard/RecipeCard";
-import store from '../../store';
+import store, { DELETE_RECIPE } from '../../store';
 import "./Home.css";
 
 class Home extends Component {

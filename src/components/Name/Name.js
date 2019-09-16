@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import store, { UPDATE_NAME, UPDATE_CATEGORY} from "../../store";
+import store, { UPDATE_NAME, UPDATE_CATEGORY, CLEAR_INPUTS} from "../../store";
 
 import "./Name.css";
 
@@ -35,7 +35,12 @@ class Name extends Component {
       type: UPDATE_CATEGORY,
       payload: this.state.category
     });
+    store.dispatch({
+      type: CLEAR_INPUTS
+      // All the work happens on the backend, we are just triggering the type here.
+    })
   }
+
   render() {
     return (
       <div className="Name forms">
