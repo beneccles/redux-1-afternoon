@@ -8,7 +8,7 @@ class Instructions extends Component {
     super(props);
     const reduxState = store.getState()
     this.state = {
-      instructions: reduxState.ingredients,
+      instructions: reduxState.instructions,
       input: ""
     };
   }
@@ -18,7 +18,7 @@ class Instructions extends Component {
     store.subscribe(() => {
       const reduxState = store.getState();
       this.setState({
-        instructions: reduxState.Instructions
+        instructions: reduxState.instructions
       })
     })
   }

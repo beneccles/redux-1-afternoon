@@ -35,9 +35,11 @@ function reducer(state = initialState, action) {
         case UPDATE_AUTHORLAST:
             return {...state, authorLast: payload}
         case UPDATE_INGREDIENTS:
-            return {...state, ingredients: payload}
+            const newIngredients = [...state.ingredients, payload];
+            return {...state, ingredients: newIngredients}
         case UPDATE_INSTRUCTIONS:
-            return {...state, instructions: payload}
+            const newInstructions = [...state.instructions, payload];
+            return {...state, instructions: newInstructions}
         case UPDATE_RECIPES:
             // Deconstruct state to create a new recipe.
             const {
