@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import store, { UPDATE_AUTHORFIRST, UPDATE_AUTHORLAST } from "../../store";
 import './Author.css';
 
 class Author extends Component {
   constructor(props) {
     super(props);
+    // Bring the data in from Store, if there is anything to show.
+    const reduxState = store.getState()
     this.state = {
-      authorFirst: '',
-      authorLast: ''
+      authorFirst: reduxState.authorFirst,
+      authorLast: reduxState.authorLast
     };
   }
 
@@ -22,8 +25,18 @@ class Author extends Component {
       authorLast: nameVal
     });
   }
+
+  // Dispatch new data to update Store State
   saveChanges() {
     // Send data to Redux state
+    store.dispatch({
+      type: UPDATE_AUTHORFIRST,
+      payload: this.state.authorFirst
+    });
+    store.dispatch({
+      type: UPDATE_AUTHORLAST,
+      payload: this.state.authorLast
+    });
   }
   render() {
     return (
