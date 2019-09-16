@@ -11,6 +11,24 @@ class Home extends Component {
     this.state = {
       recipes: reduxState.recipes
     };
+
+    this.deleteRecipe = this.deleteRecipe.bind(this)
+  }
+
+  componentDidMount() {
+    store.subscribe(() => {
+      const reduxState = store.getState();
+      this.setState({
+        recipes: reduxState.recipes
+      });
+    });
+  }
+
+  deleteRecipe(index){
+    store.dispatch({
+      type: DELETE_RECIPE,
+      payload: index
+    })
   }
 
   render() {
@@ -24,6 +42,8 @@ class Home extends Component {
           authorLast={recipe.authorLast}
           ingredients={recipe.ingredients}
           instructions={recipe.instructions}
+          uniqID={i}
+          deleteID={this.deleteRecipe}
         />
       );
     });

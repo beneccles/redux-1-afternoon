@@ -60,8 +60,10 @@ function reducer(state = initialState, action) {
         case CLEAR_INPUTS:
             return {...state, name: "", category: "", authorFirst: "",
             authorLast: "", ingredients: [], instructions: []}
-        // case DELETE_RECIPE:
-
+        case DELETE_RECIPE:
+            const editRecipes = [...state.recipes]
+            editRecipes.splice(payload, 1);
+            return {...state, recipes: editRecipes}
         default:
             return state
             }
