@@ -7,7 +7,8 @@ const initialState = {
     authorFirst: "",
     authorLast: "",
     ingredients: [],
-    instructions: []
+    instructions: [],
+    recipes: []
 }
 
 // ACTION CONSTANTS
@@ -17,6 +18,7 @@ export const UPDATE_AUTHORFIRST = 'UPDATE_AUTHORFIRST'
 export const UPDATE_AUTHORLAST = 'UPDATE_AUTHORLAST'
 export const UPDATE_INGREDIENTS = 'UPDATE_INGREDIENTS'
 export const UPDATE_INSTRUCTIONS = 'UPDATE_INSTRUCTIONS'
+export const UPDATE_RECIPES = 'UPDATE_RECIPES'
 
 // Reducer
 function reducer(state = initialState, action) {
@@ -36,6 +38,21 @@ function reducer(state = initialState, action) {
             return {...state, ingredients: payload}
         case UPDATE_INSTRUCTIONS:
             return {...state, instructions: payload}
+        case UPDATE_RECIPES:
+            // Deconstruct state to create a new recipe.
+            const {
+                name, category, authorFirst,
+                authorLast, ingredients, instructions
+            } = state
+            // Create the new recipe object to add to the array.
+            const recipe = {
+                name, category, authorFirst,
+                authorLast, ingredients, instructions
+            };
+            // We build our own payload to send, since all the data
+            // is already here.
+            const newRecipes = [...state.recipes, recipe];
+            return {...state, recipes: newRecipes}
         default:
             return state
     }

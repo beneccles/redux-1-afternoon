@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import store, { UPDATE_INSTRUCTIONS } from '../../store';
+import store, { UPDATE_INSTRUCTIONS, UPDATE_RECIPES } from '../../store';
 
 
 class Instructions extends Component {
@@ -40,6 +40,11 @@ class Instructions extends Component {
   }
   create() {
     // Create new recipe in Redux state
+    store.dispatch({
+      type: UPDATE_RECIPES
+      // Since the data already exists in redux to make the recipe,
+      // we don't need to provide a payload.
+    })
   }
   render() {
     const instructions = this.state.instructions.map((instruction, i) => {
