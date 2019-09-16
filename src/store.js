@@ -6,7 +6,8 @@ const initialState = {
     category: "",
     authorFirst: "",
     authorLast: "",
-    ingredients: []
+    ingredients: [],
+    instructions: []
 }
 
 // ACTION CONSTANTS
@@ -15,6 +16,7 @@ export const UPDATE_CATEGORY = 'UPDATE_CATEGORY'
 export const UPDATE_AUTHORFIRST = 'UPDATE_AUTHORFIRST'
 export const UPDATE_AUTHORLAST = 'UPDATE_AUTHORLAST'
 export const UPDATE_INGREDIENTS = 'UPDATE_INGREDIENTS'
+export const UPDATE_INSTRUCTIONS = 'UPDATE_INSTRUCTIONS'
 
 // Reducer
 function reducer(state = initialState, action) {
@@ -32,6 +34,8 @@ function reducer(state = initialState, action) {
             return {...state, authorLast: payload}
         case UPDATE_INGREDIENTS:
             return {...state, ingredients: payload}
+        case UPDATE_INSTRUCTIONS:
+            return {...state, instructions: payload}
         default:
             return state
     }

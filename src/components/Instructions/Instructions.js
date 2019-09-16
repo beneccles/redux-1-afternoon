@@ -1,14 +1,28 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import store, { UPDATE_INSTRUCTIONS } from '../../store';
+
 
 class Instructions extends Component {
   constructor(props) {
     super(props);
+    const reduxState = store.getState()
     this.state = {
-      instructions: [],
+      instructions: reduxState.ingredients,
       input: ""
     };
   }
+
+  // Upon mount, get the data from store so that it shows up immediately at load.
+  componentDidMount() {
+    store.subscribe(() => {
+      const reduxState = store.getState();
+      this.setState({
+        instructions: reduxState.Instructions
+      })
+    })
+  }
+
   handleChange(val) {
     this.setState({
       input: val
@@ -16,6 +30,10 @@ class Instructions extends Component {
   }
   addInstruction() {
     // Send data to Redux state
+    store.dispatch({
+      type: UPDATE_INSTRUCTIONS,
+      payload: this.state.input
+    })
     this.setState({
       input: ""
     });
